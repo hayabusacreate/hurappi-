@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public float jumpPower=5;
     private Rigidbody rigidbody;
     private Vector3 JumpPos;
+    public Score score;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,5 +26,10 @@ public class Player : MonoBehaviour
         {
             rigidbody.velocity = JumpPos;
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        score.score++;
     }
 }
