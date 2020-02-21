@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     private Rigidbody rigidbody;
     private Vector3 JumpPos;
     public Score score;
+    public GameObject gameover;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +17,7 @@ public class Player : MonoBehaviour
         rigidbody = gameObject.transform.GetComponent<Rigidbody>();
         //ジャンプ力をrigidbody.velocityに代入するためにVector3に変換
         JumpPos = new Vector3(0, jumpPower, 0);
+        gameover.SetActive(false);
     }
 
     // Update is called once per frame
@@ -31,5 +33,11 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         score.score++;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Destroy(gameObject);
+        gameover.SetActive(true);
     }
 }
